@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+class Student{ // 여러개의 변수를 하나로 묶기 위해 사용 
+	public:
+		string name; // 이름 
+		int score; // 점수 정보
+		Student(string name, int score){
+			this->name = name;
+			this->score = score;
+
+		} 
+		//정렬 기준은 ' 점수가 작은 순서
+		bool operator<(Student &student){
+			return this->score < student.score; // 내 점수가 낮다면 우선순위가 더 높게됨 
+		} 
+};
+
+int main(void){
+	Student students[]={
+		Student("김나방", 90),
+		Student("나사람", 93),
+		Student("박볼리", 97),
+		Student("최아리", 87),
+		Student("홍길동", 92)
+	};
+	sort(students, students+5);
+	for(int i= 0; i<5; i++){
+		cout << students[i].name << ' ';
+	}
+} 
