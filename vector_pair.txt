@@ -1,0 +1,29 @@
+// vector , pair을 사용해서  성적순으로 정렬하되, 동점일 경우 나이가 어린 사람이 우선순위를 갖도록 정렬
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool compare(pair<string, pair<int, int> > a, pair<string, pair<int, int> > b){
+	if(a.second.first == b.second.first){
+		return a.second.second > b.second.second;
+	}else{
+		return a.second.first > b.second.first;
+	}
+} 
+int main(void){
+	vector<pair<string, pair<int, int> > > v; // 이름, 성적, 생년월일  
+	v.push_back(pair<string, pair<int, int> >("최볼리",pair<int, int>(90,19941001)));
+	v.push_back(pair<string, pair<int, int> >("박볼리",pair<int, int>(80,19931001)));
+	v.push_back(pair<string, pair<int, int> >("최아리",pair<int, int>(81,19961001)));
+	v.push_back(pair<string, pair<int, int> >("강아지",pair<int, int>(90,19981001)));
+	v.push_back(pair<string, pair<int, int> >("김나은",pair<int, int>(94,19911001)));
+	
+	sort(v.begin(), v.end() , compare);
+	
+	for(int i= 0; i< v.size(); i++){
+		cout << v[i].first << ' '; // first, 첫번쨰 값/ second = 두번째 값을 의 미
+ 
+	}
+} 
