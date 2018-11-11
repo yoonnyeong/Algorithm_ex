@@ -1,0 +1,61 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int n;
+int s_min = 1000000005; 
+int s_max= -1000000005; //최대값, 최소값
+int oper[4]; //연산자를 저장할 배열 +, - , x, /
+int num[13]; // 숫자를 저장할 배열
+
+int solution(int count, int start){
+    //입력받은 수 만큼 계산하면 종료
+    if(count == n){
+        s_max = max(s_max, start);
+        s_min = min(s_min, start);
+        return 0;
+    }
+    // +
+    if(oper[0]!=0){
+        oper[0]--;
+        solution(count+1, start+num[count]);
+        oper[0]++;
+
+    }
+    // -
+    if(oper[1]!=0){
+        oper[1]--;
+        solution(count+1, start-num[count]);
+        oper[1]++;
+    }
+    // x
+    if(oper[2]!=0){
+        oper[2]--;
+        solution(count+1, start*num[count]);
+        oper[2]++;
+    }
+    // /
+    if(oper[3]!=0){
+        oper[3]--;
+        solution(count+1, start/num[count]);
+        oper[3]++;
+    }
+    
+    return 0;
+}
+
+int main()
+{
+    cin >> n;
+    for(int i=0; i<n; i++){
+        cin >> num[i];
+    }
+    
+    //연산자 갯수 입력
+    for(int i=0; i<4; i++){
+        cin >> oper[i];
+    }
+    solution(1, num[0]);
+    cout << s_max << endl;
+    cout << s_min;
+    return 0;
+}
