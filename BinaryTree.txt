@@ -1,0 +1,80 @@
+/*
+이진트리 : 트리를 활용한 대표적인 예시 / 데이터의 탐색 속도 증진
+"포인터" 사용 : 특정한 루트에서 자식으로 접근 가능
+[이진트리에서 데이터를 탐색하는 순서]
+(1) 전위순회
+: 중간, 자기자신을 먼저 -> 왼 -> 오
+(2) 중위순회
+: 중간, 자기자신을 중간
+(3) 후위순회 (계산기, 수식)
+: 중간, 자기자신을 마지막
+*/
+#include <iostream>
+
+using namespace std;
+
+int number = 15;
+
+// 구조체 + 함수 = 클래스
+
+//하나의 노드 정보를 선언 
+typedef struct node *treePointer;
+typedef struct node{
+  int data;
+  treePointer leftChild, rightChild;
+}node;
+
+//전위 순회를 구현
+void preorder(treePointer ptr){
+    if(ptr){
+        cout << ptr -> data << ' ';
+        preorder(ptr->leftChild);
+        preorder(ptr->rightChild);
+    }
+}
+
+// 중위 순회를 구현
+void inorder(treePointer ptr){
+    if(ptr){
+        inorder(ptr->leftChild);
+        cout << ptr -> data << ' ';
+        inorder(ptr->rightChild);
+    }
+}
+
+//후위 순회를 구현
+void postorder(treePointer ptr){
+    if(ptr){
+        postorder(ptr->leftChild);
+        postorder(ptr->rightChild);
+        cout << ptr -> data << ' ';
+    }
+}
+
+int main(void){
+    node nodes[number + 1];
+    for(int i = 0 ; i <=number ; i++){
+        nodes[i].data = i;
+        nodes[i].leftChild = NULL;;
+        nodes[i].rightChild = NULL;
+    }
+    for(int i = 0  ; i <= number ; i++){
+        if(i % 2 == 0){ // 나누어 떨어지면 왼쪽 자식으로 짝수/왼쪽
+            nodes[i/2].leftChild = &nodes[i];
+        }else{ // 2로 나누었을 때 나머지가 1이면 오른쪽 자식으로
+            nodes[i/2].rightChild = &nodes[i];
+        }
+    }
+    
+    //전위 순회
+    preorder(&nodes[1]); 
+    cout << endl;
+    
+    //중위 순회
+    inorder(&nodes[1]);
+    cout << endl;
+    
+    //후위 순회
+    postorder(&nodes[1]);
+    return 0;
+}
