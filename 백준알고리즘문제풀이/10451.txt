@@ -1,0 +1,45 @@
+/*순열사이클
+10451번
+*/
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int a[1001]; //순열의 크기
+int check[1001]; 
+
+void dfs(int start){
+    if(check[start]) return; //이미 방문한 노드라면 함수종료 
+    //사이클이라면 출발점 = 도착점 이므로 return 이 됨. -> 사이클 수 ++
+    // 연결된 점에 방문
+    check[start]=true;
+    dfs(a[start]);
+}
+
+int main()
+{   
+    int t;
+    scanf("%d", &t); 
+    while(t--){
+        int n; 
+        scanf("%d", &n);
+        for(int i = 1; i<= n; i++){
+            // 순열의 값을 각각 넣기 
+            cin >> a[i];
+            check[i]=0;
+        }
+        int answer=0; // 사이클의 수
+        
+        // 사이클 찾기 시작
+        for(int i= 1 ; i <= n ; i ++){
+            if(check[i]==false){
+                dfs(i);
+                //dfs 가 정상적으로 다 실행되고 난 뒤, 사이클 수 1 증가 
+                answer+=1;}
+        }
+        printf("%d\n", answer);
+        
+    }
+   
+    return 0;
+}

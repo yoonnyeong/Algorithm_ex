@@ -1,0 +1,45 @@
+#include <cstdio>
+int a[100001]; // 학생이 선호하는 다른 학생의 정보가 들어간 배열
+int d[100001]; // 방문 여부
+int s[100001];
+int n;
+
+//step 은 같은 팀에 속했는지 확인을 위한 식별번호
+int dfs(int x, int cnt, int &step) {
+    if (d[x] != 0) {
+        // 혼자하고 싶은 사람일 경우
+        if (step != s[x]) {
+            return 0; // 갯수에 변화가 없음
+        }
+        //혼자하고 싶지 않지만 방문이 끝난 경우
+        return cnt-d[x]; // 현재 몇명이 팀이 되었는지 
+    }
+    // 항상 처음 시작했을 때는 if문 x
+    d[x] = cnt;
+    s[x] = step;
+    return dfs(a[x], cnt+1, step);
+}
+
+int main() {
+    int t;
+    scanf("%d",&t);
+    while (t--) {
+        scanf("%d",&n);
+        for (int i=1; i<=n; i++) {
+            scanf("%d",&a[i]);
+            // 전부 0 으로 초기화
+            d[i] = 0;
+            s[i] = 0;
+        }
+        // 프로젝트에 속하지 못하는 학생들은 answer
+        int ans=0;
+        for (int i=1; i<=n; i++) {
+            //아직 방문하지 않았다면
+            if (d[i] == 0) {
+                ans += dfs(i, 1, i);
+            }
+        }
+        printf("%d\n",n-ans);
+    }
+    return 0;
+}

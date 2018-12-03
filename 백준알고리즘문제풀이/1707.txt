@@ -1,0 +1,65 @@
+/*이분그래프
+1707 번
+*/
+#include <iostream>
+#include <vector>
+using namespace std;
+//점, 간선, 색깔 표시
+vector<int> a[20001] ; // 점
+int color[20001]; // 색깔을 나눠 표시할 배열 집합 1 : 빨강 집합 2: 파랑 초기 : 0
+
+void dfs(int index, int c){
+    color[index] = c;
+    for(int i = 0; i<a[index].size(); i++){
+        int k = a[index][i]; //나와 연결되어 있는 점을 확인 
+        if(color[k]==0){ // 나와 연결되어 있는 점이 아직 색칠이 안되어있다면, 그 점에 대해서 함수호출
+            dfs(k, 3-c); // 3-c 인이유는 나와 다른 색으로 색칠되어야 하기 때문
+        }
+    }
+}
+int main()
+{
+   // 입력은 testcase 의 수, 정점 n, 간선 m, 연결된 점 u, v
+   int t; 
+   scanf("%d", &t);
+   while(t--){ // t가 0 이면 false이므로 탈출
+       //입력 받는 것 : 하나의 test 에 대해서 
+       int n, m;
+       scanf("%d %d", &n, &m); //정점과 간선의 수를 입력 받고
+       // 점에 대한 color 값을 전부 0으로 초기화
+       for(int i=1; i<=n; i++){
+           a[i].clear(); // 점 i 에 대하여 연결된 간선들의 정보도 초기화
+           color[i]=0;
+       }
+       // 각각의 점과 연결된 선들의 정보를 입력
+       for(int i = 0 ; i< m; i++){
+           int u,v;
+           scanf("%d %d", &u, &v);
+           //서로 연결
+           a[u].push_back(v);
+           a[v].push_back(u);
+       }
+       //이제 정보의 입력은 끝 / 이분그래프가 맞는지 확인
+       for(int i =1; i<=n;i++){
+           if(color[i]==0){
+               dfs(i, 1); // 처음 호출 시 빨간색
+           }
+       }
+       bool check = true; // 이분그래프가 맞는지 아닌지의 여부 
+       for(int i = 1; i<=n; i++){ // 횟수만 확인해줄 for문
+           for(int j =0; j<a[i].size(); j++){
+               int k = a[i][j];
+               if(color[i]==color[k]){
+                   check = false;
+               }
+           }
+       }
+       
+    if(check)
+        printf("YES\n");
+    else
+        printf("NO\n");
+       
+   }
+    return 0;
+}

@@ -1,0 +1,49 @@
+/*
+반복수열 2331번
+- 기존의 배열에 값을 넣는 형태가 조금 다름 
+배열 중, 반복되는 수가 있는지 확인 할 때, 그 배열의 값을 인덱스로 활용
+* 항상 while 의 조건을 잘 살펴보자 
+*/
+#include <iostream>
+
+using namespace std;
+
+int check[100000];
+//제곱함수 a의 b승
+int pow(int a, int b){
+    int sum = 1;
+    for(int i=0; i<b; i++){
+        sum = sum * a;
+    }
+    return sum;
+}
+
+// 배열의 값
+int next(int a, int p){
+    int sum=0; 
+    while(a > 0){
+        sum += pow(a%10, p); // 1의 자리수 부터 차근 차근 계산
+        a = a/10;
+    }
+    return sum;
+}
+
+// 반복되는 수가 나오기 전의 배열의 갯수
+// 중복되는 값이 나오면 종료, 아니면 계속 계산
+int length(int a, int p, int cnt){
+    // 중복되는 값 존재
+    if(check[a]!=0)
+       return check[a]-1; // 반복되는 수를 제외한 갯수이기에 -1
+    // 중복되는 값 없음
+    check[a] = cnt; // 그 수를 배열에 새로 저장해 줌 
+    int b = next(a, p); // 그 다음의 배열의 값을 계산
+    return length(b, p, cnt+1); // 재귀 함수의 형테
+}
+
+
+int main(){
+    int a, p;
+    cin >> a >> p;
+    cout << length(a, p, 1) << endl;
+    return 0;
+}
