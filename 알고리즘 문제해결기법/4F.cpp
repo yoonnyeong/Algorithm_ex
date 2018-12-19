@@ -78,4 +78,6 @@ int main() {
 	for (int caseIndex = 1; caseIndex <= caseSize; ++caseIndex) {
 		process(caseIndex, sieve);
 	}
+
 }
+
