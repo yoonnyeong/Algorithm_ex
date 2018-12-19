@@ -17,22 +17,22 @@ int main() {
  int n;
  scanf("%d", &n);
  for(int i = 0 ; i < n; i++){
- 		scanf("%d", &data[i]);
+ 	scanf("%d", &data[i]);
  }
 	
-	int row = 0;  //행
-	int col = 0; // 열
-	int group = 0;
-	for(int i = 0; i < n; i++){
-	
-		row = (data[i]-1) / 9 + 1;
-		col =  (data[i]-1) % 9 + 1;
-		int left = ((row-1)/3)*3 + 1;
-		int offset = (col-1)/3;
-		group = left + offset;
-		
+int row = 0;  //행
+int col = 0; // 열
+int group = 0;
+for(int i = 0; i < n; i++){
+	row = (data[i]-1) / 9 + 1;
+	col =  (data[i]-1) % 9 + 1;
+	int left = ((row-1)/3)*3 + 1;
+	int offset = (col-1)/3;
+	group = left + offset;	
 	//케이스 번호 출력
 	printf("Case #%d:\n", i+1);
-  printf("%d %d %d\n", row, col, group);
-	}
+        printf("%d %d %d\n", row, col, group);
+}
+
+	return 0;
 }
