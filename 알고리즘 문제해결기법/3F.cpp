@@ -68,7 +68,6 @@ int main() {
 
 	// 범위의 합이 가장 큰 범위를 계산한다.
 	Range answer = getBestRange(n, m, cards, ranges);
-
 	printf("%d %lld\n", answer.index, answer.totalPoint);
   
   return 0;
