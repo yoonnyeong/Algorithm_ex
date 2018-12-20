@@ -16,7 +16,7 @@ long long getLCM(long a, long b) {
 	return a * b / getGCD(a, b);
 }
 
-/**
+/*
  * 여러 숫자에 대한 공통 최소 공배수를 계산하는 함수
  *
  * @param numbers
