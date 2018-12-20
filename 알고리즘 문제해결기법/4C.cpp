@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 //최대공약수 -> 유클리드 호제법
 long long getGCD(long long a, long long b) {
 	while( a % b !=0){
