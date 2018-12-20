@@ -2,29 +2,28 @@
 #include<iostream>
 
 using namespace std;
-
 /**
-* ¿ŞÂÊ ¾Æ·¡ ÁÂÇ¥°¡ (x,y)ÀÎ ÇÈ¼¿ÀÌ ¹İÁö¸§ RÀÎ ¿ø¿¡ Æ÷ÇÔµÇ´Â°¡?
+* ì™¼ìª½ ì•„ë˜ ì¢Œí‘œê°€ (x,y)ì¸ í”½ì…€ì´ ë°˜ì§€ë¦„ Rì¸ ì›ì— í¬í•¨ë˜ëŠ”ê°€?
 * @param x
 * @param y
 * @param R
-* @return  Æ÷ÇÔµÈ´Ù¸é true, else false
+* @return  í¬í•¨ëœë‹¤ë©´ true, else false
 */
 bool isInside(long long x, long long y, long long R)
 {
 		long long result = x*x + y*y;
-	  if(result < R*R){ // ÁÂÇ¥°¡ ¿ø¾È¿¡ ÀÖ¾î¾ß ÇÏ¹Ç·Î = Àº ¾ø¾î¾ßÇÔ
+	  if(result < R*R){ // ì¢Œí‘œê°€ ì›ì•ˆì— ìˆì–´ì•¼ í•˜ë¯€ë¡œ = ì€ ì—†ì–´ì•¼í•¨
 			return true;
 		}
-	//¿ø¾È¿¡ Æ÷ÇÔµÇ¾îÀÖ´Â Á¡ÀÌ ¾Æ´Ï¶ó¸é
+	//ì›ì•ˆì— í¬í•¨ë˜ì–´ìˆëŠ” ì ì´ ì•„ë‹ˆë¼ë©´
 	return false;
 	
 }
 void testcase(int caseIndex) {
-	long long R; //¹İÁö¸§
+	long long R; //ë°˜ì§€ë¦„
 	scanf("%lld", &R);
-	long long sum = 0 ; //Æ÷ÇÔµÇ´Â ÇÈ¼¿ ¼ö ¼¼±â
-	long long y = R; //yÁÂÇ¥¿¡ ¹İÁö¸§ -> À§¿¡¼­ºÎÅÍ Â÷·Ê´ë·Î 
+	long long sum = 0 ; //í¬í•¨ë˜ëŠ” í”½ì…€ ìˆ˜ ì„¸ê¸°
+	long long y = R; //yì¢Œí‘œì— ë°˜ì§€ë¦„ -> ìœ„ì—ì„œë¶€í„° ì°¨ë¡€ëŒ€ë¡œ 
 	for(int x = 0; x <= R; x++){
 		long long height =0;
 		for(; y>=0; y--){
@@ -36,7 +35,7 @@ void testcase(int caseIndex) {
 		sum+= height;	 
 	}
 	printf("#%d\n", caseIndex);
-	//¸î°³ÀÎÁö Ãâ·Â
+	//ëª‡ê°œì¸ì§€ ì¶œë ¥
 	printf("%lld\n", sum*4);
 	
 }
