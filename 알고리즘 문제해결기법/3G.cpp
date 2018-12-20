@@ -39,7 +39,6 @@ int main(){
 				if(cnt==k){
 					answer++;
 				}
-		
 		}
 	
 	
