@@ -2,9 +2,11 @@
 #include <vector>
 
 using namespace std;
+
 int data[5000];
 int check[5000];
 int lucky[5000];
+
 int main() {
 	// n: 전체 티켓의 수
 	// m: 요청 고객의 수
