@@ -29,11 +29,12 @@ void testcase(){
 			}
 			 int nr =  cr + dx[cdir];
 			 int nc =  cc + dy[cdir];		
-			while(true){ //범위안에 든다면 종료
+			while(true){ 
+				//범위안에 든다면 종료
 				if( nr >=0 && nc >= 0 && nr < n && nc < n && map[nr][nc]==0){
 					break;
 				}
-				//탈출이 안되고 있음
+				//범위 밖이라면, 방향을 다시 계산해준다. -> if문을 다시 체크
 				cdir = (cdir + 1) % 4;
 				nr =  cr + dx[cdir];
 			  nc =  cc + dy[cdir];		
