@@ -20,12 +20,10 @@ int main() {
 		 scanf("%s", compare);
 	
 	 for(int j=0; j < count; j++){
-				if(answer[0]!=compare[0]) check= false;
 				if(answer[j]!=compare[j]){
-				
-						if(answer[j]=='?')
-							 check= true;
-						else
+						if(answer[j]=='?') // 다음 행을 수행하지 않고, 다음 조건으로 이동
+							 continue;
+						else // '?'가 아니라면 다른 글자이므로, false로 처리
 							check = false;
 			
 				}
