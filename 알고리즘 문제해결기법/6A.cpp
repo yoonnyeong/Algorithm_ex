@@ -83,4 +83,5 @@ int main() {
 	for (int caseIndex = 1; caseIndex <= caseSize; caseIndex += 1) {
 		process(caseIndex);
 	}
+	
 }
