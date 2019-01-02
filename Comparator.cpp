@@ -17,9 +17,11 @@ public:
               // If 2 Players have the same score
         if(a.score == b.score){
             // Order alphabetically by name
+            // a가 b보다 사전순으로 앞에 있을 때
             if(a.name.compare(b.name) < 0){
                 return 1;
             }
+            //a가 b보다 뒤에 있을때
             else if(a.name.compare(b.name) > 0){
                 return -1;
             }
